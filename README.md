@@ -82,14 +82,14 @@ Create cross-platform iOS, Android, and Progressive Web Apps with JavaScript, HT
 
   `install CocoaPods`
 
-  > This is the Cross-Platform tools for us to using native plugins
+  > This is the Cross-Platform tools for us to use native plugins
   > [Guide Line](https://guides.cocoapods.org/using/getting-started.html#installation)
 
   ```bash
     sudo gem install cocoapods
   ```
 
-  `compile to native-based source code`
+  `generate native-based source code`
 
   ```bash
     npx cap add ios
