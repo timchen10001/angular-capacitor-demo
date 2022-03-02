@@ -1,27 +1,120 @@
-# AngularCapacitorDemo
+# Capacitor Demo (Angular based)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
+## [Capacitor](https://capacitorjs.com/)
 
-## Development server
+A cross-platform native runtime for web apps.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Capacitor is an open source native runtime for building Web Native apps.
 
-## Code scaffolding
+Create cross-platform iOS, Android, and Progressive Web Apps with JavaScript, HTML, and CSS.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## References
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- ### [Environment Setup](https://capacitorjs.com/docs/getting-started/environment-setup)
 
-## Running unit tests
+- ### [Installation](https://capacitorjs.com/docs/getting-started)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+---
 
-## Running end-to-end tests
+## Scenario: `without existing project`
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+`1. create a new ng project through ng cli`
 
-## Further help
+```bash
+  ng new [app-name]
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  cd [app-name]
+```
+
+`2. install capacitor core libs`
+
+```bash
+  npm install @capacitor/core @capacitor/cli
+```
+
+`3. init capacity configuration`
+
+```bash
+  npx cap init
+```
+
+`4. looking forward to capacitor.config.ts`
+
+```ts
+  import { CapacitorConfig } from '@capacitor/cli';
+
+  const config: CapacitorConfig = {
+    appId: 'com.example.app', // 1.
+    appName: 'angular-capacitor-demo', // 2.
+    webDir: 'dist/angular-capacitor-demo', // 3.
+    bundledWebRuntime: false // 4.
+  };
+
+  export default config;
+
+  // 1. for app store id
+  // 2. for app store name
+  // 3. !!! this must be the same as "outputPath" in angular.json (the entry of the bundle contains index.html file)
+  // 4. false if you don't manually packing source code (in this project, ng-cli do it for us.)
+```
+
+`5. bundling source code`
+
+```bash
+  ng build --prod
+```
+
+`6. add platform`
+
+- IOS
+
+  `Xcode Command Line Tools`
+
+  ![Xcode Command Line Tools](https://capacitorjs.com/assets/img/docs/ios/xcode-preferences-location.png)
+
+  `install ios plugin`
+
+  ```bash
+    npm install @capacitor/ios
+  ```
+
+  `install CocoaPods`
+
+  > This is the Cross-Platform tools for us to using native plugins
+  > [Guide Line](https://guides.cocoapods.org/using/getting-started.html#installation)
+
+  ```bash
+    sudo gem install cocoapods
+  ```
+
+  `compile to native-based source code`
+
+  ```bash
+    npx cap add ios
+  ```
+
+  `opening X-code workspace`
+
+  ```bash
+    npx cap open ios
+  ```
+
+- Android
+
+  `TODO`
+
+---
+
+## Scenario: `existing project`
+
+`A little bit different from above flow`
+
+```bash
+  npm install @capacitor/core -S
+
+  npm install @capacitor/cli -D
+
+  npx cap init
+```
